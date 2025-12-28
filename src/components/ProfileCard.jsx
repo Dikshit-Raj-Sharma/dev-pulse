@@ -1,11 +1,12 @@
 import React from "react";
 
 const ProfileCard = ({ userData }) => {
-  if (!userData) return;
+  if (!userData) return null;
+
   return (
-    <div className="mt-8 bg-slate-50 rounded-2xl border border-slate-200 animate-in fade-in slide-in-from-top-4 duration-500">
-        {/* Top Section: Avatar and Name */}
-      <div className="flex item-center gap-4">
+    <div className="mt-8 p-6 bg-slate-50 rounded-2xl border border-slate-200 animate-in fade-in slide-in-from-top-4 duration-500">
+      {/* Top Section: Avatar and Name */}
+      <div className="flex items-center gap-4">
         <img
           src={userData.avatar_url}
           alt={userData.name}
@@ -17,15 +18,52 @@ const ProfileCard = ({ userData }) => {
           </h2>
           <p className="text-blue-600 font-medium">@{userData.login}</p>
         </div>
-        <div className="grid grid-cols-3 gap-4 mt-6">
-          <div className="text-center">
-            <p className="text-xs text-slate-500 uppercase font-semibold">
-              Repos
-            </p>
-            <p className="text-lg font-bold">{userData.public_repos}</p>
-          </div>
+      </div>
+
+      {/* Bio Section - Added this for completeness */}
+      {userData.bio && (
+        <p className="mt-4 text-sm text-slate-600 leading-relaxed italic">
+          "{userData.bio}"
+        </p>
+      )}
+
+      {/* Stats Grid - Now moved below and centered */}
+      <div className="grid grid-cols-3 gap-4 mt-6 pt-6 border-t border-slate-200">
+        <div className="text-center">
+          <p className="text-[10px] text-slate-500 uppercase font-bold tracking-wider">
+            Repos
+          </p>
+          <p className="text-lg font-bold text-slate-900">
+            {userData.public_repos}
+          </p>
+        </div>
+        <div className="text-center border-x border-slate-200">
+          <p className="text-[10px] text-slate-500 uppercase font-bold tracking-wider">
+            Followers
+          </p>
+          <p className="text-lg font-bold text-slate-900">
+            {userData.followers}
+          </p>
+        </div>
+        <div className="text-center">
+          <p className="text-[10px] text-slate-500 uppercase font-bold tracking-wider">
+            Following
+          </p>
+          <p className="text-lg font-bold text-slate-900">
+            {userData.following}
+          </p>
         </div>
       </div>
+
+      {/* Call to Action */}
+      <a
+        href={userData.html_url}
+        target="_blank"
+        rel="noreferrer"
+        className="block w-full text-center mt-6 text-sm font-semibold text-blue-600 hover:underline"
+      >
+        View GitHub Profile →
+      </a>
     </div>
   );
 };
