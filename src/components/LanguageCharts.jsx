@@ -1,8 +1,17 @@
 import React, { useState } from "react";
-import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip, Legend, Sector } from "recharts";
+import {
+  PieChart,
+  Pie,
+  Cell,
+  ResponsiveContainer,
+  Tooltip,
+  Legend,
+  Sector,
+} from "recharts";
 
 const renderActiveShape = (props) => {
-  const { cx, cy, innerRadius, outerRadius, startAngle, endAngle, fill } = props;
+  const { cx, cy, innerRadius, outerRadius, startAngle, endAngle, fill } =
+    props;
 
   return (
     <g>
@@ -10,7 +19,7 @@ const renderActiveShape = (props) => {
         cx={cx}
         cy={cy}
         innerRadius={innerRadius}
-        outerRadius={outerRadius + 10} // This adds the "Growth"
+        outerRadius={outerRadius + 10}
         startAngle={startAngle}
         endAngle={endAngle}
         fill={fill}
@@ -49,7 +58,7 @@ const LanguageCharts = ({ repos }) => {
           <PieChart>
             <Pie
               activeIndex={activeIndex}
-              activeShape={renderActiveShape} // 3. Use the function here
+              activeShape={renderActiveShape}
               data={chartData}
               innerRadius={60}
               outerRadius={80}
@@ -57,18 +66,42 @@ const LanguageCharts = ({ repos }) => {
               dataKey="value"
               onMouseEnter={(_, index) => setActiveIndex(index)}
               onMouseLeave={() => setActiveIndex(null)}
-              stroke="none" // Removes the thin white lines between slices for a cleaner look
+              stroke="none"
+              animationDuration={800}
+              animationEasing="ease-in-out"
             >
               {chartData.map((entry, index) => (
-                <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                <Cell
+                  key={`cell-${index}`}
+                  fill={COLORS[index % COLORS.length]}
+                />
               ))}
             </Pie>
-            <Tooltip />
-            <Legend 
-              verticalAlign="bottom" 
+            <Tooltip
+              contentStyle={{
+                borderRadius: "12px",
+                border: "none",
+                boxShadow: "0 10px 15px -3px rgba(0,0,0,0.1)",
+              }}
+              formatter={(value, name) => {
+                const percent = ((value / total) * 100).toFixed(0);
+                return [`${value} repos (${percent}%)`, name];
+              }}
+            />
+            <Legend
+              verticalAlign="bottom"
+              align="center"
+              iconType="circle"
               formatter={(value, entry) => {
-                const percent = ((entry.payload.value / total) * 100).toFixed(0);
-                return <span className="text-slate-600 text-xs font-semibold">{value} ({percent}%)</span>;
+                // entry.payload.value is the number of repos for that language
+                const percent = ((entry.payload.value / total) * 100).toFixed(
+                  0
+                );
+                return (
+                  <span className="text-slate-600 text-xs font-semibold">
+                    {value} ({percent}%)
+                  </span>
+                );
               }}
             />
           </PieChart>

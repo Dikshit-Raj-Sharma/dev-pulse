@@ -45,30 +45,33 @@ function App() {
     console.log("Looking for GitHub user:", username);
   };
   return (
-    <>
-      <div className="min-h-screen bg-slate-50 flex items-center justify-center p-4">
-        <div className="bg-white p-8 rounded-2xl shadow-xl w-full max-w-md border border-slate-100">
-          <h1 className="text-3xl font-extrabold text-slate-900 mb-2">
-            DevPulse
-          </h1>
-          <p className="text-slate-500 mb-8">
-            Type a GitHub username to see their tech DNA.
-          </p>
-          {err && <p className="text-red-500 text-sm mb-4">{err}</p>}
-          {/* The Grid Container: 1 column by default, 2 columns on 'medium' screens and up */}
-          <SearchBar
-            username={username}
-            setUsername={setUsername}
-            handleSearch={handleSearch}
-            loading={loading}
-          />
-          <ProfileCard userData={userData} />
-
-          <LanguageCharts repos={repos} />
-        </div>
+  <div className="min-h-screen bg-slate-50 flex items-center justify-center p-4 md:p-8">
+    {/* Notice max-w-5xl for a wider dashboard view */}
+    <div className="w-full max-w-5xl transition-all duration-700">
+      
+      {/* Search Section stays at the top */}
+      <div className="max-w-md mx-auto bg-white p-8 rounded-2xl shadow-xl border border-slate-100 mb-8">
+        <h1 className="text-3xl font-extrabold text-slate-900 mb-2">DevPulse</h1>
+        <p className="text-slate-500 mb-6 text-sm">Analyze tech DNA in seconds.</p>
+        <SearchBar username={username} setUsername={setUsername} handleSearch={handleSearch} loading={loading} />
       </div>
-    </>
-  );
+
+      {/* DASHBOARD GRID - Pops in only when data is found */}
+      {userData && (
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 animate-in fade-in zoom-in slide-in-from-bottom-8 duration-1000">
+          <div className="flex flex-col h-full">
+            <ProfileCard userData={userData}/>
+          </div>
+          <div className="flex flex-col h-full">
+            <LanguageCharts repos={repos} />
+          </div>
+        </div>
+      )}
+
+      {/* REPO LIST can go here later, spanning full width */}
+    </div>
+  </div>
+);
 }
 
 export default App;
