@@ -5,6 +5,7 @@ import axios from "axios";
 import SearchBar from "./components/SearchBar";
 import ProfileCard from "./components/ProfileCard";
 import LanguageCharts from "./components/LanguageCharts";
+import RepoList from "./components/RepoList.jsx"
 
 function App() {
   const [username, setUsername] = useState("");
@@ -67,8 +68,9 @@ function App() {
           </div>
         </div>
       )}
-
-      {/* REPO LIST can go here later, spanning full width */}
+      {/* REPO LIST can go here, spanning full width */}
+      <RepoList repos={repos} />
+      
     </div>
   </div>
 );
