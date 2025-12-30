@@ -2,7 +2,10 @@
   <img src="public/devpulse-logo.png" width="180" alt="DevPulse Logo" />
 
 </p>
-# DevPulse 🚀
+<h1 align="center">DevPulse</h1>
+<p align="center">
+  GitHub analytics dashboard for developer insights
+</p>
 
 **DevPulse** is a modern, responsive GitHub analytics dashboard built to visualize developer profiles and repository statistics in real-time. Unlike standard user finders, DevPulse provides deep insights into language usage and top-performing projects with a polished, theme-aware UI.
 
