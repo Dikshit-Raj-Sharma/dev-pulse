@@ -4,8 +4,7 @@ const ProfileCard = ({ userData }) => {
   if (!userData) return null;
 
   return (
-    <div className="h-full p-6 bg-white rounded-2xl border border-slate-100 shadow-sm animate-in fade-in slide-in-from-top-4 duration-500 flex flex-col justify-between">
-      {/* Top Section: Avatar and Name */}
+<div className="h-full p-6 bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 animate-in fade-in slide-in-from-top-4 flex flex-col justify-between">      {/* Top Section: Avatar and Name */}
       <div className="flex items-center gap-4">
         <img
           src={userData.avatar_url}

@@ -48,8 +48,7 @@ const LanguageCharts = ({ repos }) => {
   const COLORS = ["#3b82f6", "#10b981", "#f59e0b", "#ef4444", "#8b5cf6"];
 
   return (
-    <div className="h-full p-6 bg-white rounded-2xl border border-slate-100 shadow-sm transition-all duration-500">
-      <h3 className="text-lg font-bold text-slate-800 mb-4 text-center md:text-left">
+<div className="h-full p-6 bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 cursor-default">      <h3 className="text-lg font-bold text-slate-800 mb-4 text-center md:text-left">
         Language Distribution
       </h3>
       {/* 'ResponsiveContainer' makes the chart grow/shrink for mobile phones */}
