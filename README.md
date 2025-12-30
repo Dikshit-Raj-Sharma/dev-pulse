@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="public/devpulse-logo.png" width="120" alt="DevPulse Logo" />
+  <img src="public/devpulse-logo.png" width="180" alt="DevPulse Logo" />
 
 </p>
 # DevPulse 🚀
